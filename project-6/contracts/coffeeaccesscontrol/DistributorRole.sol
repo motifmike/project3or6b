@@ -1,7 +1,8 @@
-pragma solidity ^0.5.8;
+pragma solidity 0.5.8;
 
 // Import the library 'Roles'
 import "./Roles.sol";
+
 
 // Define a contract 'DistributorRole' to manage this role - add, remove, check
 contract DistributorRole {

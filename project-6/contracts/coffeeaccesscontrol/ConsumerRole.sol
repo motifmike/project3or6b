@@ -1,14 +1,17 @@
-pragma solidity ^0.5.8;
+pragma solidity 0.5.8;
 
 // Import the library 'Roles'
 import "./Roles.sol";
+
 
 // Define a contract 'ConsumerRole' to manage this role - add, remove, check
 contract ConsumerRole {
 
   // Define 2 events, one for Adding, and other for Removing
-
+  event Added();
+  event Removed();
   // Define a struct 'consumers' by inheriting from 'Roles' library, struct Role
+  // Roles.Role private consumers;
 
   // In the constructor make the address that deploys this contract the 1st consumer
   constructor() public {
