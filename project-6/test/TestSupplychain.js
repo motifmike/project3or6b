@@ -12,7 +12,7 @@ contract('SupplyChain', function (accounts) {
   const originFarmInformation = 'Yarray Valley'
   const originFarmLatitude = '-38.239770'
   const originFarmLongitude = '144.341490'
-  var productID = upc = sku
+  var productID = upc + sku
   const productNotes = 'Best beans for Espresso'
   const productPrice = web3.utils.toWei('1', 'ether')
   var itemState = 0
@@ -49,11 +49,6 @@ contract('SupplyChain', function (accounts) {
     var eventEmitted = false
     var eventRoleAddedEmitted = false
 
-    // Watch the emitted event Harvested()
-    // var myEvent = supplyChain.Harvested()
-    // myEvent.on('data', (event) => {
-    //   eventEmitted = true;
-    // })
     supplyChain.contract.events.Harvested(null, (err, res) => {
       eventEmitted = true
     })
@@ -143,7 +138,7 @@ contract('SupplyChain', function (accounts) {
     })
 
     // Mark an item as ForSale by calling function sellItem()
-    await supplyChain.sellItem(upc, 20, { from: originFarmerID })
+    await supplyChain.sellItem(upc, productPrice, { from: originFarmerID })
 
     // Retrieve the just now saved item from blockchain by calling function fetchItem()
     const resultBufferOne = await supplyChain.fetchItemBufferOne.call(upc)
@@ -166,7 +161,7 @@ contract('SupplyChain', function (accounts) {
       eventEmitted = true
     })
     // Mark an item as Sold by calling function buyItem()
-    await supplyChain.buyItem(upc, { from: accounts[2], value: 21 })
+    await supplyChain.buyItem(upc, { from: accounts[2], value: productPrice })
 
     // Retrieve the just now saved item from blockchain by calling function fetchItem()
     const resultBufferOne = await supplyChain.fetchItemBufferOne.call(upc)
@@ -280,12 +275,12 @@ contract('SupplyChain', function (accounts) {
 
     // Verify the result set:
     assert.equal(resultBufferTwo[5], 7, 'Error: Invalid item State -- Should be Purchased')
-    assert.equal(resultBufferTwo[0], sku + 1, 'Error: Missing or Invalid sku')
+    assert.equal(resultBufferTwo[0], sku , 'Error: Missing or Invalid sku')
     assert.equal(resultBufferTwo[1], upc, 'Error: Missing or Invalid upc')
     assert.equal(resultBufferTwo[2], productID, 'Error: Missing or Invalid consumerId')
-    assert.equal(resultBufferTwo[3], produc, 'Error: Missing or Invalid consumerId')
+    assert.equal(resultBufferTwo[3], productNotes, 'Error: Missing or Invalid productNotes')
     assert.equal(resultBufferTwo[4], productPrice, 'Error: Missing or Invalid productPrice')
-    assert.equal(resultBufferTwo[5], itemState, 'Error: Missing or Invalid itemState')
+    assert.equal(resultBufferTwo[5], 7, 'Error: Missing or Invalid itemState')
     assert.equal(resultBufferTwo[6], distributorID, 'Error: Missing or Invalid distributorID')
     assert.equal(resultBufferTwo[7], retailerID, 'Error: Missing or Invalid retailerID')
     assert.equal(resultBufferTwo[8], consumerID, 'Error: Missing or Invalid consumerID')
