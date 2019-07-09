@@ -280,7 +280,7 @@ contract('SupplyChain', function (accounts) {
 
     // Verify the result set:
     assert.equal(resultBufferTwo[5], 7, 'Error: Invalid item State -- Should be Purchased')
-    assert.equal(resultBufferTwo[0], sku, 'Error: Missing or Invalid sku')
+    assert.equal(resultBufferTwo[0], sku + 1, 'Error: Missing or Invalid sku')
     assert.equal(resultBufferTwo[1], upc, 'Error: Missing or Invalid upc')
     assert.equal(resultBufferTwo[2], productID, 'Error: Missing or Invalid consumerId')
     assert.equal(resultBufferTwo[3], produc, 'Error: Missing or Invalid consumerId')
