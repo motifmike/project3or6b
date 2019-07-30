@@ -174,6 +174,7 @@ contract SupplyChain is Ownable, ConsumerRole, RetailerRole, FarmerRole, Distrib
     );
     // Increment sku
     sku = sku + 1;
+    _addFarmer(_originFarmerID);
     // Emit the appropriate event
     emit Harvested(_upc);
   }
@@ -181,7 +182,7 @@ contract SupplyChain is Ownable, ConsumerRole, RetailerRole, FarmerRole, Distrib
   // Define a function 'processtItem' that allows a farmer to mark an item 'Processed'
   // Call modifier to check if upc has passed previous supply chain stage
   // Call modifier to verify caller of this function
-  function processItem(uint _upc) public harvested(_upc) verifyCaller(items[_upc].ownerID)
+  function processItem(uint _upc) public onlyFarmer harvested(_upc) verifyCaller(items[_upc].ownerID)
   {
     // Update the appropriate fields
     items[_upc].itemState = State.Processed;
