@@ -21,19 +21,4 @@ No added libraries
 UML Sequence Diagram:
 ![UML Sequence Diagram](./docs/umlsequencediagram.png)
 
-#updates
 
-Added writeup, added use of farm role, and added UML diagrams.
-
-# Writeup
-
-This smart contract represents a coffee supply chain flow. 
-Load up and serve the index.html file located in the `/src/` directory. 
-
-To Harvest the coffee, go ahead and enter your farm information in the farm details section. You will be added as a farmer upon clicking Harvest and only your account will be able to process, pack and seel the coffee. To Process, Pack and mark the coffee as "ForSale" click the buttons respectively. 
-
-From a second account, click the Buy button and this account is added is a distributor that can then click the "Ship" buttong to indicated that the product has been shipped. 
-
-After the coffee has shipped, a retailer account can receive the coffee and last be purchased by a cusumer account by clicking the "Purchase" button. 
-
-At any point after harvest, the "Fetch Item 1" and "Fetch Item 2" can retrieve inoformation about the coffee in question. 
